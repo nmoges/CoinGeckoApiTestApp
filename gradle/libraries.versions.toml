@@ -1,6 +1,7 @@
 [versions]
 ktx = "1.9.0"
 ktor = "2.2.2"
+koin = "3.4.3"
 activity = "1.7.0"
 
 [libraries]
@@ -19,6 +20,12 @@ ktor-client-serialization = { group = "io.ktor", name = "ktor-client-serializati
 ktor-serialization-kotlinx-json = { group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktor" }
 ktor-serialization = { group = "io.ktor", name = "ktor-serialization", version.ref = "ktor" }
 
+koin-core = { group = "io-insert-koin", name = "koin-core", version.ref = "koin" }
+koin-android = { group = "io-insert-koin", name = "koin-android", version.ref = "koin" }
+koin-android-compat = { group = "io-insert-koin", name = "koin-android-compat", version.ref = "koin" }
+koin-androidx-compose = { group = "io.insert-koin", name = "koin-androidx-compose", version.ref = "koin" }
+koin-androidx-compose-navigation = { group = "io.insert-koin", name = "koin-androidx-compose-navigation", version.ref = "koin" }
+
 [plugins]
 
 [bundles]
@@ -33,4 +40,16 @@ ktor = [
     "ktor-client-serialization",
     "ktor-serialization-kotlinx-json",
     "ktor-serialization"
+]
+
+koin = [
+    "koin-core",
+    "koin-android"
+]
+
+koin-compose = [
+    "koin-core",
+    "koin-android",
+    "koin-androidx-compose",
+    "koin-androidx-compose-navigation"
 ]

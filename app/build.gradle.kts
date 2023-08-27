@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("org.jetbrains.kotlin.plugin.serialization")
 }
 
 android {
@@ -54,6 +55,7 @@ dependencies {
     implementation(libs.androidx.ktx)
     implementation(libs.bundles.ktor)
     implementation(libs.androidx.activity)
+    implementation(libs.bundles.koin)
 
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
     //implementation("androidx.activity:activity-compose:1.7.0")
