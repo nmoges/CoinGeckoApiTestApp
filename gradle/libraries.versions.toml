@@ -50,6 +50,7 @@ koin = [
 koin-compose = [
     "koin-core",
     "koin-android",
+    "koin-android-compat",
     "koin-androidx-compose",
     "koin-androidx-compose-navigation"
 ]

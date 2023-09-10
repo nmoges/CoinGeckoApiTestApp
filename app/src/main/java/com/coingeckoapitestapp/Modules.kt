@@ -2,6 +2,7 @@ package com.coingeckoapitestapp
 
 import com.coingeckoapitestapp.network.CryptoService
 import com.coingeckoapitestapp.network.CryptoServiceImpl
+import com.coingeckoapitestapp.repository.CryptoRepository
 import com.coingeckoapitestapp.repository.CryptoRepositoryImpl
 import com.coingeckoapitestapp.viewModel.CryptoViewModel
 import io.ktor.client.HttpClient
@@ -12,39 +13,24 @@ import io.ktor.client.plugins.logging.LogLevel
 import io.ktor.client.plugins.logging.Logging
 import io.ktor.serialization.kotlinx.json.json
 import org.koin.androidx.viewmodel.dsl.viewModel
+import org.koin.core.module.Module
 import org.koin.dsl.module
 
-val viewModel = module {
+
+val repositoryModule = module {
+    single<CryptoRepository> { CryptoRepositoryImpl(get()) }
+}
+
+val viewModelModule = module {
     viewModel { CryptoViewModel(get()) }
 }
 
-val repositoryModule = module {
-    single { CryptoRepositoryImpl(get()) }
-}
-
-val httpModule = module {
-    getClientHttp()
-}
-
 val serviceModule = module {
-    single { CryptoServiceImpl(get(), get()) }
+    single<CryptoService> { CryptoServiceImpl() }
 }
 
-val dispatcher = module {
-    single { getDispatcherProvider() }
-}
-
-private fun getClientHttp(): HttpClient =
-    HttpClient(Android) {
-        install(Logging) {
-            level = LogLevel.ALL
-        }
-        install(ContentNegotiation) {
-            json()
-        }
-        install(HttpTimeout) {
-            requestTimeoutMillis = 15000L
-        }
-    }
-
-private fun getDispatcherProvider(): DispatcherProvider = DispatcherProviderAndroid()
+var listModules: MutableList<Module> = mutableListOf(
+    viewModelModule,
+    repositoryModule,
+    serviceModule
+)
