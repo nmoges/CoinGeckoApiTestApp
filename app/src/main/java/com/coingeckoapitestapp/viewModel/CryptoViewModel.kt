@@ -1,6 +1,5 @@
 package com.coingeckoapitestapp.viewModel
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.coingeckoapitestapp.Crypto
