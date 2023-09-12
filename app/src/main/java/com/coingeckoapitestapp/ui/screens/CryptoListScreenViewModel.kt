@@ -1,4 +1,4 @@
-package com.coingeckoapitestapp.viewModel
+package com.coingeckoapitestapp.ui.screens
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -11,13 +11,17 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 // TODO : replace by use cases
-class CryptoViewModel(
+class CryptoListScreenViewModel(
     private val cryptoRepository: CryptoRepository
 ) : ViewModel() {
 
     private val _listCryptoCoin = MutableStateFlow<List<CryptoData>>(mutableListOf())
     val listCryptoCoin: StateFlow<List<CryptoData>>
         get() = _listCryptoCoin
+
+    init {
+        getCryptoList()
+    }
 
     fun getCryptoList() {
         viewModelScope.launch {

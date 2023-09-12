@@ -21,10 +21,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.coingeckoapitestapp.R
+import com.coingeckoapitestapp.model.CryptoData
 import com.coingeckoapitestapp.ui.theme.CoinGeckoApiTestAppTheme
 
 @Composable
-fun CryptoListItem() {
+fun CryptoListItem(cryptoData: CryptoData) {
     Card(
         colors = CardDefaults.cardColors(containerColor = Color.White),
         modifier = Modifier
@@ -45,8 +46,8 @@ fun CryptoListItem() {
             )
             Spacer(modifier = Modifier.padding(start = 20.dp))
             Column {
-                Text(text = "Bitcoin")
-                Text(text = "BTC")
+                Text(text = cryptoData.name)
+                Text(text = cryptoData.symbol)
             }
         }
     }
@@ -56,6 +57,6 @@ fun CryptoListItem() {
 @Composable
 fun TestCryptoListItem() {
     CoinGeckoApiTestAppTheme {
-        CryptoListItem()
+       // CryptoListItem()
     }
 }

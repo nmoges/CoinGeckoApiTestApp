@@ -12,36 +12,20 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.coingeckoapitestapp.ui.screens.CryptoListScreen
 import com.coingeckoapitestapp.ui.theme.CoinGeckoApiTestAppTheme
-import com.coingeckoapitestapp.viewModel.CryptoViewModel
+import com.coingeckoapitestapp.ui.screens.CryptoListScreenViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : ComponentActivity() {
 
-    private val cryptoViewModel: CryptoViewModel by viewModel()
+    private val cryptoListScreenViewModel: CryptoListScreenViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-
             CoinGeckoApiTestAppTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    // Greeting("Android")
-                    Column {
-                        Button(
-                            onClick = {
-                                cryptoViewModel.getCryptoList()
-                            }
-                        ) {
-                            Text(text = "Check list")
-                        }
-
-                    }
-                }
+                CryptoListScreen()
             }
         }
     }
